@@ -2,6 +2,9 @@
 {% block content %}
 <h1>Home template</h1>
 <div>
+    <a href="{% url 'create-room' %}">Create Room</a>
+    <hr>
+    <br>
     {% for room in rooms %}
         <div>
             <a href="{% url 'room' room.id %}">

@@ -13,3 +13,7 @@ def room(request, roomId):
     selectedRoom = Room.objects.get(id=roomId) # database query
     context = {'room': selectedRoom}
     return render(request, 'base/room.html', context)
+
+def createRoom(request):
+    context = {}
+    return render(request, 'base/room_form.html', context)
