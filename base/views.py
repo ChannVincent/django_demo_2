@@ -1,20 +1,15 @@
 from django.shortcuts import render
+from .models import Room
 
-rooms = [
-    {'id': 1, 'name': 'Room A'},
-    {'id': 2, 'name': 'Room B'},
-    {'id': 3, 'name': 'Room C'},
-]
+
 
 def home(request):
+    rooms = Room.objects.all() # database query
     context = {'rooms': rooms}
     return render(request, 'base/home.html', context)
 
 def room(request, roomId):
     selectedRoom = None
-    for room in rooms:
-        if room['id'] == int(roomId):
-            selectedRoom = room
-
+    selectedRoom = Room.objects.get(id=roomId) # database query
     context = {'room': selectedRoom}
     return render(request, 'base/room.html', context)
