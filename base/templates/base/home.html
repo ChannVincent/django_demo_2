@@ -11,8 +11,11 @@
                 <span>@{{room.host.username}}</span>
                 <h5>{{room.id}} -- {{room.name}}</h5>
                 <small>{{room.topic}}</small>
-                <hr>
             </a>
+            <a href="{% url 'update-room' room.id %}">
+                <p>update room</p>
+            </a>
+            <hr>
         </div>
     {% endfor %}
 </div>
