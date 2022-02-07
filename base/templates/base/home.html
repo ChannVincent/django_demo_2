@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>Home template</h1>
+<h1>Room list</h1>
 <div>
     <a href="{% url 'create-room' %}">Create Room</a>
     <hr>
@@ -14,6 +14,9 @@
             </a>
             <a href="{% url 'update-room' room.id %}">
                 <p>update room</p>
+            </a>
+            <a href="{% url 'delete-room' room.id %}">
+                <p>delete room</p>
             </a>
             <hr>
         </div>
