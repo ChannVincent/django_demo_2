@@ -5,21 +5,21 @@ from .forms import RoomForm
 
 
 def home(request):
-
     q = request.GET.get("q") if request.GET.get("q") != None else ""
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q)  # = topic.name.contains(q) case insensitive
         | Q(name__icontains=q)
         | Q(host__username__icontains=q)
     )
-    topics = Topic.objects.all()  # database query
-    context = {"rooms": rooms, "topics": topics}
+    topics = Topic.objects.all()
+    room_count = rooms.count()
+    context = {"rooms": rooms, "topics": topics, "room_count": room_count}
     return render(request, "base/home.html", context)
 
 
 def room(request, roomId):
     selectedRoom = None
-    selectedRoom = Room.objects.get(id=roomId)  # database query
+    selectedRoom = Room.objects.get(id=roomId)
     context = {"room": selectedRoom}
     return render(request, "base/room.html", context)
 
