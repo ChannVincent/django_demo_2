@@ -18,3 +18,13 @@ class DeviceSerializer(serializers.Serializer):
         instance.software = validated_data.get("software", instance.software)
         instance.save()
         return instance
+
+
+class DeviceLogSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    latitude = serializers.CharField(required=False, allow_blank=True, max_length=200)
+    longitude = serializers.CharField(required=False, allow_blank=True, max_length=200)
+    # device = serializers.CharField(source="device.serial_id", read_only=True)
+
+    def create(self, validated_data):
+        return DeviceLog.objects.create(**validated_data)

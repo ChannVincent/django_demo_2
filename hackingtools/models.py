@@ -8,6 +8,8 @@ class Device(models.Model):
 
 
 class DeviceLog(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True)
+    device = models.ForeignKey(
+        Device, on_delete=models.SET_NULL, null=True, related_name="logs"
+    )
     latitude = models.CharField(max_length=200)
     longitude = models.CharField(max_length=200)

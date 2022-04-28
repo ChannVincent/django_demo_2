@@ -14,5 +14,9 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     # GET http://127.0.0.1:8000/api/device/1/
     path("api/device/<int:pk>/", views.deviceView),
+    # GET http://127.0.0.1:8000/api/devices/
+    # POST http://127.0.0.1:8000/api/devices/
     path("api/devices/", views.deviceListView),
+    # GET http://127.0.0.1:8000/api/devicelog/
+    path("api/devicelog/<int:pk>/", views.deviceLogListView),
 ]

@@ -1,17 +1,23 @@
-from django.contrib.auth.models import User, Group
 from hackingtools.models import Device, DeviceLog
-from rest_framework import viewsets
-from rest_framework import permissions
-from hackingtools.serializers import (
-    DeviceSerializer,
-)
+from hackingtools.serializers import DeviceSerializer, DeviceLogSerializer
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
+
+
+@csrf_exempt
+def deviceLogListView(request, pk):
+    if request.method == "GET":
+        deviceLogs = DeviceLog.objects.filter(device__id=pk)
+        serializer = DeviceLogSerializer(deviceLogs, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == "POST":
+        data = JSONParser().parse(request)
+        serializer = DeviceLogSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
 
 
 @csrf_exempt
