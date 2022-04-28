@@ -1,14 +1,20 @@
 from django.contrib.auth.models import User, Group
+from hackingtools.models import Device, DeviceLog
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ["url", "username", "email", "groups"]
+class DeviceSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    serial_id = serializers.CharField(required=True, allow_blank=True, max_length=200)
+    model = serializers.CharField(required=False, allow_blank=True, max_length=200)
+    software = serializers.CharField(required=False, allow_blank=True, max_length=200)
 
+    def create(self, validated_data):
+        return Device.objects.create(**validated_data)
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ["url", "name"]
+    def update(self, instance, validated_data):
+        instance.serial_id = validated_data.get("serial_id", instance.serial_id)
+        instance.model = validated_data.get("model", instance.model)
+        instance.software = validated_data.get("software", instance.software)
+        instance.save()
+        return instance
