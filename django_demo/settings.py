@@ -28,12 +28,7 @@ SECRET_KEY = "django-insecure-b5o=s!^ol_+gl^qvb927oozv98=6*3y4tw)u!7#g2wf!73h$*4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "0.0.0.0",
-    "the-yogify.herokuapp.com",
-    "127.0.0.1",
-    "vincent-demo-2.herokuapp.com",
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -83,13 +78,18 @@ WSGI_APPLICATION = "django_demo.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# ie if Heroku server
+if "DATABASE_URL" in os.environ:
+    import dj_database_url
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    DATABASES = {"default": dj_database_url.config()}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
