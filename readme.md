@@ -56,6 +56,8 @@ admin
 
 # PRODUCTION
 
+source env/bin/activate
+
 ## install heroku
 
 brew install heroku
