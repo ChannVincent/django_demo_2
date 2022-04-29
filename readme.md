@@ -27,10 +27,14 @@ see all django commands
 
 django-admin startproject django_demo
 
+# requirements
+
+pip install -r requirements.txt
+pip freeze > requirements.txt
+
 # run project
 
 cd django_demo/
-pip install -r requirements.txt
 python3 manage.py runserver
 
 # add app to the project
