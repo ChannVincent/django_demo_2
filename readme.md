@@ -30,6 +30,7 @@ django-admin startproject django_demo
 # run project
 
 cd django_demo/
+pip install -r requirements.txt
 python3 manage.py runserver
 
 # add app to the project
@@ -54,3 +55,6 @@ http://127.0.0.1:8000/
 python3 manage.py createsuperuser
 admin (ad@min.com)
 admin
+
+# push to heroku
+
