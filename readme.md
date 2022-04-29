@@ -58,4 +58,5 @@ admin
 
 # push to heroku
 
+python3 manage.py collectstatic
 git push heroku main
