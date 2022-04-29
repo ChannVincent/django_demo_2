@@ -19,4 +19,5 @@ urlpatterns = [
     path("api/devices/", views.deviceListView),
     # GET http://127.0.0.1:8000/api/devicelog/
     path("api/devicelog/<int:pk>/", views.deviceLogListView),
+    path("api/devicelog/", views.deviceLogView),
 ]

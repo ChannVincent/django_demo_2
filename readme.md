@@ -62,7 +62,7 @@ source env/bin/activate
 
 brew install heroku
 heroku login
-heroku git:remote -a vincent-demo-2 
+// heroku git:remote -a vincent-demo-2 
 
 ## push to heroku
 

@@ -11,7 +11,11 @@ def deviceLogListView(request, pk):
         deviceLogs = DeviceLog.objects.filter(device__id=pk)
         serializer = DeviceLogSerializer(deviceLogs, many=True)
         return JsonResponse(serializer.data, safe=False)
-    elif request.method == "POST":
+
+
+@csrf_exempt
+def deviceLogView(request):
+    if request.method == "POST":
         data = JSONParser().parse(request)
         serializer = DeviceLogSerializer(data=data)
         if serializer.is_valid():
