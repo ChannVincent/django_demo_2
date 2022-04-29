@@ -27,7 +27,12 @@ SECRET_KEY = "django-insecure-b5o=s!^ol_+gl^qvb927oozv98=6*3y4tw)u!7#g2wf!73h$*4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0" "the-yogify.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "the-yogify.herokuapp.com",
+    "127.0.0.1",
+    "vincent-demo-2.herokuapp.com",
+]
 
 
 # Application definition
